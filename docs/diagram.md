@@ -1,0 +1,53 @@
+### ER Diagram
+Note: Paste in `dbdiagram.io`
+
+```
+Table Users {
+  id serial [pk]
+  name varchar [not null]
+  email varchar [not null]
+  password varchar [not null]
+  biography varchar [not null]
+  is_active boolean [not null, default: true]
+  created_at datetime [default: "now()"]
+  updated_at datetime [default: "updated()"]
+}
+
+Table Plans {
+  id serial [pk]
+  name varchar [not null]
+  description text [not null]
+  monthly_price numeric [not null]
+  periodicity_days integer [not null]
+  is_active boolean [not null, default: true]
+  created_at datetime [default: "now()"]
+  updated_at datetime [default: "updated()"]
+}
+
+Table Subscriptions {
+  id serial [pk]
+  plan_id integer [ref: > Plans.id]
+  user_id integer [ref: > Users.id]
+  status varchar [not null]
+  auto_renew boolean [not null, default: true]
+}
+
+Table Invoices {
+  id serial [pk]
+  subscription_id integer [ref: > Subscriptions.id]
+  amount numeric [not null]
+  payment_status varchar [not null]
+  period_start_date datetime [not null]
+  period_end_date datetime [not null]
+}
+
+Table Payments {
+  id serial [pk]
+  invoice_id integer [ref: > Invoices.id]
+  amount_paid numeric [not null]
+  payment_date datetime [not null]
+  payment_method varchar [not null]
+  created_at datetime [default: "now()"]
+  updated_at datetime [default: "updated()"]
+}
+```
