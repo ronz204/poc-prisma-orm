@@ -18,6 +18,8 @@ model User {
   isActive   Boolean  @default(true)
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
+
+  subscription Subscription[]
 }
 
 model Plan {
@@ -29,4 +31,21 @@ model Plan {
   isActive        Boolean  @default(true)
   createdAt       DateTime @default(now())
   updatedAt       DateTime @updatedAt
+
+  subscription Subscription[]
+}
+
+model Subscription {
+  id        Int      @id @default(autoincrement())
+  planId    Int
+  userId    Int
+  startDate DateTime
+  endDate   DateTime
+  status    String
+  autoRenew Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  plan Plan @relation(fields: [planId], references: [id])
+  user User @relation(fields: [userId], references: [id])
 }
