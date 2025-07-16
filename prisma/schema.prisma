@@ -46,6 +46,23 @@ model Subscription {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
+  invoice Invoice[]
+
   plan Plan @relation(fields: [planId], references: [id])
   user User @relation(fields: [userId], references: [id])
+}
+
+model Invoice {
+  id              Int      @id @default(autoincrement())
+  subscriptionId  Int
+  amount          Decimal
+  issueDate       DateTime
+  dueDate         DateTime
+  paymentStatus   String
+  periodStartDate DateTime
+  periodEndDate   DateTime
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  subscription Subscription @relation(fields: [subscriptionId], references: [id])
 }
