@@ -1,7 +1,7 @@
 
 CREATE TABLE Plans (
   id SERIAL PRIMARY KEY,
-  name VARCHAR(255) NOT NULL,
+  name VARCHAR(255) NOT NULL UNIQUE,
   description TEXT NOT NULL,
   monthly_price NUMERIC(10, 2) NOT NULL,
   periodicity_days INTEGER NOT NULL,
