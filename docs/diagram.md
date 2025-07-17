@@ -46,6 +46,8 @@ Table Invoices {
   payment_status varchar [not null, note: "pending, paid"]
   period_start_date datetime [not null]
   period_end_date datetime [not null]
+  created_at datetime [default: "now()"]
+  updated_at datetime [default: "updated()"]
 }
 
 Table Payments {
