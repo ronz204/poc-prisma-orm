@@ -19,3 +19,13 @@ model User {
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
 }
+
+model Plan {
+  id        Int      @id @default(autoincrement())
+  name      String   @unique
+  price     Decimal  @default(0.00)
+  period    Int      @default(30)
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
