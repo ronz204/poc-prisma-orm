@@ -1,4 +1,4 @@
-### ER Diagram
+### Prisma ORM | ER Diagram
 Note: Paste in `dbdiagram.io`
 
 ```
