@@ -63,5 +63,19 @@ model Invoice {
   createdAt      DateTime @default(now())
   updatedAt      DateTime @updatedAt
 
+  payment Payment[]
+
   subscription Subscription @relation(fields: [subscriptionId], references: [id])
+}
+
+model Payment {
+  id            Int      @id @default(autoincrement())
+  invoiceId     Int
+  amountPaid    Decimal  @default(0.00)
+  paymentDate   DateTime @default(now())
+  paymentMethod String   @default("credit_card")
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  invoice Invoice @relation(fields: [invoiceId], references: [id])
 }
