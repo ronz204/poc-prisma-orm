@@ -8,3 +8,74 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model User {
+  id         Int      @id @default(autoincrement())
+  name       String   @unique
+  email      String   @unique
+  password   String
+  biography  String?
+  pictureUrl String?
+  isActive   Boolean  @default(true)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  subscription Subscription[]
+}
+
+model Plan {
+  id        Int      @id @default(autoincrement())
+  name      String   @unique
+  price     Decimal  @default(0.00)
+  period    Int      @default(30)
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  subscription Subscription[]
+}
+
+model Subscription {
+  id        Int      @id @default(autoincrement())
+  userId    Int
+  planId    Int
+  status    String   @default("active")
+  autoRenew Boolean  @default(true)
+  startDate DateTime @default(now())
+  endDate   DateTime
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  invoice Invoice[]
+
+  user User @relation(fields: [userId], references: [id])
+  plan Plan @relation(fields: [planId], references: [id])
+}
+
+model Invoice {
+  id             Int      @id @default(autoincrement())
+  subscriptionId Int
+  amount         Decimal  @default(0.00)
+  issueDate      DateTime @default(now())
+  dueDate        DateTime
+  status         String   @default("pending")
+  periodStart    DateTime
+  periodEnd      DateTime
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  payment Payment[]
+
+  subscription Subscription @relation(fields: [subscriptionId], references: [id])
+}
+
+model Payment {
+  id            Int      @id @default(autoincrement())
+  invoiceId     Int
+  amountPaid    Decimal  @default(0.00)
+  paymentDate   DateTime @default(now())
+  paymentMethod String   @default("credit_card")
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  invoice Invoice @relation(fields: [invoiceId], references: [id])
+}
