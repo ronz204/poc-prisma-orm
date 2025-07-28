@@ -7,7 +7,8 @@
     "prisma:seed": "prisma db seed",
     "prisma:studio": "prisma studio",
     "prisma:generate": "prisma generate",
-    "prisma:migrate": "prisma migrate dev"
+    "prisma:migrate": "prisma migrate dev",
+    "playground": "bun run src/Playground.ts"
   },
   "devDependencies": {
     "@types/bun": "latest"
@@ -17,6 +18,8 @@
   },
   "dependencies": {
     "@prisma/client": "^6.12.0",
-    "prisma": "^6.12.0"
+    "bcryptjs": "^3.0.2",
+    "prisma": "^6.12.0",
+    "yup": "^1.6.1"
   }
 }
