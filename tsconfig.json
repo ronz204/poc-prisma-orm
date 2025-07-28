@@ -27,9 +27,9 @@
 
     "baseUrl": ".",
     "paths": {
-      "@Database/*": ["src/Database/*"],
-      "@UseCases/*": ["src/UseCases/*"],
-      "@Services/*": ["src/Services/*"],
+      "@Database/*": ["src/Infrastructure/Database/*"],
+      "@Services/*": ["src/Infrastructure/Services/*"],
+      "@UseCases/*": ["src/Application/UseCases/*"],
     }
   }
 }
