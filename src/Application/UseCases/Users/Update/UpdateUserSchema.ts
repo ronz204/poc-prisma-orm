@@ -7,3 +7,5 @@ export const UpdateUserSchema = yup.object({
   biography: yup.string().optional().max(200),
   pictureUrl: yup.string().optional().url().max(100),
 });
+
+export type UpdateUserCommand = yup.InferType<typeof UpdateUserSchema>;
