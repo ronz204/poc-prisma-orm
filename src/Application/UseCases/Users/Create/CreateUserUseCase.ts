@@ -1,15 +1,15 @@
+import type { UserDTO } from "@DTOs/UserDTO";
 import type { UseCase } from "@UseCases/UseCase";
-import type { CreateUserCommand } from "./CreateUserCommand";
-import type { CreateUserResponse } from "./CreateUserResponse";
+import type { CreateUserCommand } from "./CreateUserSchema";
 
 import { PrismaClient } from "generated/prisma";
 import { CreateUserSchema } from "./CreateUserSchema";
 import { BcryptService } from "@Services/Bcrypt/BcryptService";
 
-export class CreateUserUseCase implements UseCase<CreateUserCommand, CreateUserResponse> {
+export class CreateUserUseCase implements UseCase<CreateUserCommand, UserDTO> {
   constructor(private readonly prisma: PrismaClient) {};
 
-  public async execute(command: CreateUserCommand): Promise<CreateUserResponse> {
+  public async execute(command: CreateUserCommand): Promise<UserDTO> {
     const validated = await CreateUserSchema.validate(command);
 
     const existing = await this.prisma.user.findFirst({

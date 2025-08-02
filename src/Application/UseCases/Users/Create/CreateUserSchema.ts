@@ -7,3 +7,5 @@ export const CreateUserSchema = yup.object({
   biography: yup.string().optional().max(200),
   pictureUrl: yup.string().optional().url().max(100),
 });
+
+export type CreateUserCommand = yup.InferType<typeof CreateUserSchema>;
