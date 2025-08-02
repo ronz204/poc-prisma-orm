@@ -30,6 +30,7 @@
       "@Database/*": ["src/Infrastructure/Database/*"],
       "@Services/*": ["src/Infrastructure/Services/*"],
       "@UseCases/*": ["src/Application/UseCases/*"],
+      "@DTOs/*": ["src/Application/DTOs/*"],
     }
   }
 }
