@@ -10,11 +10,11 @@ export class DisableUserUseCase implements UseCase<DisableUserCommand, { status:
   public async execute(command: DisableUserCommand): Promise<{ status: boolean }> {
     const validated = await DisableUserSchema.validate(command);
 
-    const existing = await this.prisma.user.findFirst({ where: { email: validated.email } });
+    const existing = await this.prisma.user.findFirst({ where: { id: validated.id } });
     if (!existing) throw new Error("User not found");
 
     await this.prisma.user.update({
-      where: { email: validated.email },
+      where: { id: validated.id },
       data: { isActive: false },
     });
 
