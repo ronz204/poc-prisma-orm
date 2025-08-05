@@ -3,7 +3,9 @@ import type { PrismaClient } from "generated/prisma";
 import { BcryptService } from "@Services/Bcrypt/BcryptService";
 
 export class UserSeeder extends Seeder {
-  constructor(prisma: PrismaClient) {super(prisma)}
+  constructor(prisma: PrismaClient) {
+    super(prisma)
+  };
 
   public async seed(): Promise<void> {
     const users = [
@@ -44,10 +46,14 @@ export class UserSeeder extends Seeder {
       },
     ];
 
-    for (const user of users) {
-      const hashed = await BcryptService.hash(user.password);
+    const hashes = await Promise.all(users.map(user => {
+      return BcryptService.hash(user.password);
+    }));
 
-      await this.prisma.user.upsert({
+    await Promise.all(users.map((user, idx) => {
+      const hashed = hashes[idx]!;
+
+      return this.prisma.user.upsert({
         where: { email: user.email },
         update: {},
         create: {
@@ -58,6 +64,6 @@ export class UserSeeder extends Seeder {
           pictureUrl: user.pictureUrl,
         },
       });
-    };
+    }));
   };
 };
