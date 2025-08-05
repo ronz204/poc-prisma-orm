@@ -12,7 +12,7 @@ export class GetActiveSubsUseCase implements UseCase<GetActiveSubsQuery, GetActi
     const validated = await GetActiveSubsSchema.validate(query);
 
     const user = await this.prisma.user.findFirst({
-      where: { email: validated.email },
+      where: { id: validated.id },
       include: {
         subscription: {
           where: { status: "active" },
