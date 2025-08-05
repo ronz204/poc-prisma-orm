@@ -12,7 +12,7 @@ export class UpdateUserUseCase implements UseCase<UpdateUserCommand, UserDTO> {
   public async execute(command: UpdateUserCommand): Promise<UserDTO> {
     const validated = await UpdateUserSchema.validate(command);
 
-    const existing = await this.prisma.user.findFirst({ where: { email: validated.email } });
+    const existing = await this.prisma.user.findFirst({ where: { id: validated.id } });
     if (!existing) throw new Error("User not found");
 
     if (validated.password) {
@@ -20,7 +20,7 @@ export class UpdateUserUseCase implements UseCase<UpdateUserCommand, UserDTO> {
     };
 
     const updated = await this.prisma.user.update({
-      where: { email: validated.email },
+      where: { id: validated.id },
       data: {
         name: validated.name,
         password: validated.password,
