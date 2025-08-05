@@ -35,20 +35,22 @@ model Plan {
 }
 
 model Subscription {
-  id        Int      @id @default(autoincrement())
+  id        Int       @id @default(autoincrement())
   userId    Int
   planId    Int
-  status    String   @default("active")
-  autoRenew Boolean  @default(true)
-  startDate DateTime @default(now())
-  endDate   DateTime
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  status    String    @default("active")
+  autoRenew Boolean   @default(true)
+  startDate DateTime  @default(now())
+  endDate   DateTime?
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
 
   invoice Invoice[]
 
   user User @relation(fields: [userId], references: [id])
   plan Plan @relation(fields: [planId], references: [id])
+
+  @@unique([userId, planId])
 }
 
 model Invoice {

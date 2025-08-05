@@ -10,6 +10,9 @@
     "prisma:migrate": "prisma migrate dev",
     "playground": "bun run src/Playground.ts"
   },
+  "prisma": {
+    "seed": "bun ./src/Infrastructure/Database/Runner.ts"
+  },
   "devDependencies": {
     "@types/bun": "latest"
   },
