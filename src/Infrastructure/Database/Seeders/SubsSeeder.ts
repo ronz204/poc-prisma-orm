@@ -37,7 +37,12 @@ export class SubsSeeder extends Seeder {
 
       if (!user || !plan) continue;
       await this.prisma.subscription.upsert({
-        where: { id: 0 },
+        where: {
+          userId_planId: {
+            userId: user.id,
+            planId: plan.id,
+          },
+        },
         update: {},
         create: {
           userId: user.id,
