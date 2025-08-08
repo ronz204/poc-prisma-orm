@@ -1,6 +1,6 @@
 import * as yup from "yup";
 
-export const CreateUserSchema = yup.object({
+export const RegisterUserSchema = yup.object({
   name: yup.string().required().min(3).max(30),
   email: yup.string().required().email().max(50),
   password: yup.string().required().min(8).max(20),
@@ -8,4 +8,4 @@ export const CreateUserSchema = yup.object({
   pictureUrl: yup.string().optional().url().max(100),
 });
 
-export type CreateUserCommand = yup.InferType<typeof CreateUserSchema>;
+export type RegisterUserCommand = yup.InferType<typeof RegisterUserSchema>;
