@@ -1,5 +1,5 @@
 import { Prisma } from "@Database/Prisma";
-import { ListPlansUseCase } from "@UseCases/Plans/List/ListPlansUseCase";
+import { ListPlansUseCase } from "@UseCases/Plans/ListPlans/ListPlansUseCase";
 import { UpdatePlanUseCase } from "@UseCases/Plans/UpdatePlan/UpdatePlanUseCase";
 import { CreatePlanUseCase } from "@UseCases/Plans/CreatePlan/CreatePlanUseCase";
 import { UpdateUserUseCase } from "@UseCases/Users/UpdateUser/UpdateUserUseCase";
