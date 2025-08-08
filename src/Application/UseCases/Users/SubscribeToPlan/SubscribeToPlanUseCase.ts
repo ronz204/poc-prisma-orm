@@ -1,15 +1,15 @@
 import type { UseCase } from "@UseCases/UseCase";
-import type { SubscribePlanCommand } from "./SubscribePlanSchema";
-import type { SubscribePlanResponse } from "./SubscribePlanResponse";
+import type { SubscribeToPlanCommand } from "./SubscribeToPlanSchema";
+import type { SubscribeToPlanResponse } from "./SubscribeToPlanResponse";
 
 import { PrismaClient } from "generated/prisma";
-import { SubscribePlanSchema } from "./SubscribePlanSchema";
+import { SubscribeToPlanSchema } from "./SubscribeToPlanSchema";
 
-export class SubscribePlanUseCase implements UseCase<SubscribePlanCommand, SubscribePlanResponse> {
+export class SubscribeToPlanUseCase implements UseCase<SubscribeToPlanCommand, SubscribeToPlanResponse> {
   constructor(private readonly prisma: PrismaClient) {};
 
-  public async execute(command: SubscribePlanCommand): Promise<SubscribePlanResponse> {
-    const validated = await SubscribePlanSchema.validate(command);
+  public async execute(command: SubscribeToPlanCommand): Promise<SubscribeToPlanResponse> {
+    const validated = await SubscribeToPlanSchema.validate(command);
 
     const user = await this.prisma.user.findUnique({ where: { id: validated.userId } });
     if (!user) throw new Error("User not found");
