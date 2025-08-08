@@ -3,7 +3,7 @@ import { ListPlansUseCase } from "@UseCases/Plans/List/ListPlansUseCase";
 import { UpdateUserUseCase } from "@UseCases/Users/Update/UpdateUserUseCase";
 import { CreatePlanUseCase } from "@UseCases/Plans/Create/CreatePlanUseCase";
 import { UpdatePlanUseCase } from "@UseCases/Plans/Update/UpdatePlanUseCase";
-import { DisableUserUseCase } from "@UseCases/Users/Disable/DisableUserUseCase";
+import { DisableUserUseCase } from "@UseCases/Users/DisableUser/DisableUserUseCase";
 import { RegisterUserUseCase } from "@UseCases/Users/RegisterUser/RegisterUserUseCase";
 import { GetActiveSubsUseCase } from "@UseCases/Users/GetActiveSubs/GetActiveSubsUseCase";
 
