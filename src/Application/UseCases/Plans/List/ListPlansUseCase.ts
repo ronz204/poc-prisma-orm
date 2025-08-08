@@ -10,8 +10,12 @@ export class ListPlansUseCase implements UseCase<ListPlansQuery, PlanDTO[]> {
 
   public async execute(query: ListPlansQuery): Promise<PlanDTO[]> {
     const validated = await ListPlansSchema.validate(query);
+    const { page, limit, order } = validated;
 
     const plans = await this.prisma.plan.findMany({
+      take: limit,
+      skip: (page - 1) * limit,
+      orderBy: { name: order },
       where: { isActive: true },
     });
 
