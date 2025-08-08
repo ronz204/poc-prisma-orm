@@ -47,7 +47,7 @@ export class PlanSeeder extends Seeder {
           update: {},
           create: {
             name: plan.name,
-            price: plan.price,
+            price: plan.price.toFixed(2),
             period: plan.period,
             isActive: plan.isActive,
           },

@@ -1,4 +1,5 @@
 import { Prisma } from "@Database/Prisma";
+import { ListPlansUseCase } from "@UseCases/Plans/List/ListPlansUseCase";
 import { CreateUserUseCase } from "@UseCases/Users/Create/CreateUserUseCase";
 import { UpdateUserUseCase } from "@UseCases/Users/Update/UpdateUserUseCase";
 import { CreatePlanUseCase } from "@UseCases/Plans/Create/CreatePlanUseCase";
@@ -6,6 +7,7 @@ import { UpdatePlanUseCase } from "@UseCases/Plans/Update/UpdatePlanUseCase";
 import { DisableUserUseCase } from "@UseCases/Users/Disable/DisableUserUseCase";
 import { GetActiveSubsUseCase } from "@UseCases/Users/GetActiveSubs/GetActiveSubsUseCase";
 
+const listPlansUseCase = new ListPlansUseCase(Prisma);
 const createUserUseCase = new CreateUserUseCase(Prisma);
 const updateUserUseCase = new UpdateUserUseCase(Prisma);
 const createPlanUseCase = new CreatePlanUseCase(Prisma);
