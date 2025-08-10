@@ -1,41 +1,25 @@
+import { faker } from "@faker-js/faker";
 import { Seeder } from "@Database/Seeder";
 import type { PrismaClient } from "generated/prisma";
+import { SubsFactory } from "@Database/Factories/SubsFactory";
 
 export class SubsSeeder extends Seeder {
   constructor(prisma: PrismaClient) {
     super(prisma);
-  }
+  };
 
   public async seed(): Promise<void> {
     const users = await this.prisma.user.findMany();
     const plans = await this.prisma.plan.findMany();
 
-    const subscriptions = [
-      {
-        userEmail: "alice@example.com",
-        planName: "Basic",
-        status: "active",
-        autoRenew: true,
-      },
-      {
-        userEmail: "bob@example.com",
-        planName: "Premium",
-        status: "active",
-        autoRenew: false,
-      },
-      {
-        userEmail: "charlie@example.com",
-        planName: "Trial",
-        status: "active",
-        autoRenew: false,
-      },
-    ];
+    const subs = await SubsFactory.bulk(10);
 
-    for (const sub of subscriptions) {
-      const user = users.find(u => u.email === sub.userEmail);
-      const plan = plans.find(p => p.name === sub.planName);
+    await Promise.all(subs.map(async (sub) => {
+      const user = faker.helpers.arrayElement(users);
+      const plan = faker.helpers.arrayElement(plans);
 
-      if (!user || !plan) continue;
+      if (!user || !plan) return;
+
       await this.prisma.subscription.upsert({
         where: {
           userId_planId: {
@@ -49,8 +33,10 @@ export class SubsSeeder extends Seeder {
           planId: plan.id,
           status: sub.status,
           autoRenew: sub.autoRenew,
+          startDate: sub.startDate,
+          endDate: sub.endDate,
         },
       });
-    };
+    }));
   };
 };
