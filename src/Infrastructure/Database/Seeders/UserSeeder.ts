@@ -10,9 +10,7 @@ export class UserSeeder extends Seeder {
 
   public async seed(): Promise<void> {
     await this.prisma.user.deleteMany();
-
-    const users = await Promise.all(
-      Array.from({ length: 15 }).map(() => UserFactory.build({})));
+    const users = await UserFactory.bulk(15, {});
 
     await Promise.all(users.map(async (user) => {
       const hashed = await BcryptService.hash(user.password);

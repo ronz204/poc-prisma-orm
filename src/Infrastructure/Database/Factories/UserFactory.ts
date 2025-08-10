@@ -15,4 +15,8 @@ export class UserFactory {
       updatedAt: user.updatedAt ?? new Date(),
     };
   };
+
+  public static async bulk(count: number, user: Partial<User>): Promise<User[]> {
+    return Promise.all(Array.from({ length: count }).map(() => this.build(user)));
+  };
 };
