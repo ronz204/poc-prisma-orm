@@ -3,11 +3,11 @@ import { Prisma } from "generated/prisma";
 import type { Plan } from "generated/prisma";
 
 const DEFINITIONS = [
+  { name: "Trial", period: 7, price: 0.0 },
   { name: "Basic", period: 30, price: 9.99 },
   { name: "Standard", period: 30, price: 19.99 },
   { name: "Premium", period: 30, price: 29.99 },
   { name: "Annual", period: 365, price: 99.99 },
-  { name: "Trial", period: 7, price: 0.0 },
 ];
 
 export class PlanFactory {
@@ -23,5 +23,9 @@ export class PlanFactory {
       createdAt: plan.createdAt ?? new Date(),
       updatedAt: plan.updatedAt ?? new Date(),
     };
+  };
+
+  public static async bulk(count: number, plan: Partial<Plan>): Promise<Plan[]> {
+    return Promise.all(Array.from({ length: count }).map(() => this.build(plan)));
   };
 };
