@@ -14,7 +14,8 @@
     "seed": "bun ./src/Infrastructure/Database/Runner.ts"
   },
   "devDependencies": {
-    "@types/bun": "latest"
+    "@types/bun": "latest",
+    "@types/luxon": "^3.7.1"
   },
   "peerDependencies": {
     "typescript": "^5"
@@ -23,6 +24,7 @@
     "@faker-js/faker": "^9.9.0",
     "@prisma/client": "^6.12.0",
     "bcryptjs": "^3.0.2",
+    "luxon": "^3.7.1",
     "prisma": "^6.12.0",
     "yup": "^1.6.1"
   }

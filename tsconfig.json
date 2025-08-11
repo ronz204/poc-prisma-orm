@@ -29,6 +29,7 @@
     "paths": {
       "@Database/*": ["src/Infrastructure/Database/*"],
       "@Services/*": ["src/Infrastructure/Services/*"],
+      "@Helpers/*": ["src/Infrastructure/Helpers/*"],
       "@UseCases/*": ["src/Application/UseCases/*"],
       "@DTOs/*": ["src/Application/DTOs/*"],
     }
