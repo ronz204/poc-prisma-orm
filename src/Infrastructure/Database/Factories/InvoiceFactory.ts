@@ -4,7 +4,7 @@ import type { Invoice } from "generated/prisma";
 
 const STATUSES = ["pending", "paid", "overdue"];
 
-export class InvoFactory {
+export class InvoiceFactory {
   public static async build(invo: Partial<Invoice>): Promise<Invoice> {
     const amount = invo.amount ?? faker.finance.amount({ min: 5, max: 100, dec: 2 });
 
