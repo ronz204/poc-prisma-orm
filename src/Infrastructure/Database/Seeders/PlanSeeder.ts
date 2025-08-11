@@ -4,7 +4,7 @@ import { PlanFactory } from "@Database/Factories/PlanFactory";
 
 export class PlanSeeder extends Seeder {
   constructor(prisma: PrismaClient) {
-    super(prisma);
+    super(prisma, "plan-seeder");
   };
 
   public async seed(): Promise<void> {

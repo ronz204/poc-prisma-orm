@@ -5,7 +5,7 @@ import { InvoiceFactory } from "@Database/Factories/InvoiceFactory";
 
 export class InvoiceSeeder extends Seeder {
   constructor(prisma: PrismaClient) {
-    super(prisma);
+    super(prisma, "invoice-seeder");
   };
 
   public async seed(): Promise<void> {

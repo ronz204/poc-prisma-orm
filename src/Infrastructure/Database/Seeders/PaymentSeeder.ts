@@ -5,7 +5,7 @@ import { LuxonHelper } from "@Helpers/LuxonHelper";
 
 export class PaymentSeeder extends Seeder {
   constructor(prisma: PrismaClient) {
-    super(prisma);
+    super(prisma, "payment-seeder");
   };
 
   public async seed(): Promise<void> {
