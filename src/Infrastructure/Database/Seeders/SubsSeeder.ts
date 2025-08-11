@@ -5,7 +5,7 @@ import { SubsFactory } from "@Database/Factories/SubsFactory";
 
 export class SubsSeeder extends Seeder {
   constructor(prisma: PrismaClient) {
-    super(prisma);
+    super(prisma, "subs-seeder");
   };
 
   public async seed(): Promise<void> {

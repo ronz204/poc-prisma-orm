@@ -5,7 +5,7 @@ import { BcryptService } from "@Services/Bcrypt/BcryptService";
 
 export class UserSeeder extends Seeder {
   constructor(prisma: PrismaClient) {
-    super(prisma)
+    super(prisma, "user-seeder");
   };
 
   public async seed(): Promise<void> {
