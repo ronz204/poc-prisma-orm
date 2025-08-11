@@ -1,9 +1,9 @@
 import { Seeder } from "@Database/Seeder";
 import { LuxonHelper } from "@Helpers/LuxonHelper";
 import type { PrismaClient } from "generated/prisma";
-import { InvoFactory } from "@Database/Factories/InvoFactory";
+import { InvoiceFactory } from "@Database/Factories/InvoiceFactory";
 
-export class InvoSeeder extends Seeder {
+export class InvoiceSeeder extends Seeder {
   constructor(prisma: PrismaClient) {
     super(prisma);
   };
@@ -24,7 +24,7 @@ export class InvoSeeder extends Seeder {
         const issueDate = periodStart;
         const dueDate = LuxonHelper.plus(issueDate, 7);
 
-        const invoice = await InvoFactory.build({
+        const invoice = await InvoiceFactory.build({
           subscriptionId: sub.id,
           amount: sub.plan.price,
           periodStart: periodStart,
