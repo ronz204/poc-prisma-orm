@@ -13,10 +13,8 @@ export class PlanSeeder extends Seeder {
     await Promise.all(plans.map(async (name) => {
       const plan = await PlanFactory.build({ name });
       
-      await this.prisma.plan.upsert({
-        where: { name: plan.name },
-        update: {},
-        create: {
+      await this.prisma.plan.create({
+        data: {
           name: plan.name,
           price: plan.price,
           period: plan.period,

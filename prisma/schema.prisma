@@ -49,8 +49,6 @@ model Subscription {
 
   user User @relation(fields: [userId], references: [id])
   plan Plan @relation(fields: [planId], references: [id])
-
-  @@unique([userId, planId])
 }
 
 model Invoice {

@@ -14,15 +14,8 @@ export class UserSeeder extends Seeder {
     await Promise.all(users.map(async (user) => {
       const hashed = await BcryptService.hash(user.password);
 
-      await this.prisma.user.upsert({
-        where: { email: user.email },
-        update: {
-          name: user.name,
-          password: hashed,
-          biography: user.biography,
-          pictureUrl: user.pictureUrl,
-        },
-        create: {
+      await this.prisma.user.create({
+        data: {
           name: user.name,
           email: user.email,
           password: hashed,
