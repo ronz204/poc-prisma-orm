@@ -26,6 +26,7 @@ export class InvoSeeder extends Seeder {
 
         const invoice = await InvoFactory.build({
           subscriptionId: sub.id,
+          amount: sub.plan.price,
           periodStart: periodStart,
           periodEnd: periodEnd,
           issueDate: issueDate,
