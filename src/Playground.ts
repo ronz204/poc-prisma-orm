@@ -6,7 +6,7 @@ import { UpdateUserUseCase } from "@UseCases/Users/UpdateUser/UpdateUserUseCase"
 import { DisableUserUseCase } from "@UseCases/Users/DisableUser/DisableUserUseCase";
 import { RegisterUserUseCase } from "@UseCases/Users/RegisterUser/RegisterUserUseCase";
 import { GetActiveSubsUseCase } from "@UseCases/Users/GetActiveSubs/GetActiveSubsUseCase";
-import { SubscribeToPlanUseCase } from "@UseCases/Users/SubscribeToPlan/SubscribeToPlanUseCase";
+import { SubscribeToPlanUseCase } from "@UseCases/Subs/SubscribeToPlan/SubscribeToPlanUseCase";
 
 const listPlansUseCase = new ListPlansUseCase(Prisma);
 const updateUserUseCase = new UpdateUserUseCase(Prisma);
