@@ -26,6 +26,7 @@ export class PaymentSeeder extends Seeder {
         data: {
           invoiceId: payment.invoiceId,
           amountPaid: payment.amountPaid,
+          paymentDate: paymentDate,
         },
       });
     }));
