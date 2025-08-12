@@ -8,7 +8,9 @@ export class ClientSeeder extends Seeder {
   };
 
   public async seed(): Promise<void> {
-    const clients = await ClientFactory.bulk(15, {});
-    await this.prisma.client.createMany({ data: clients });
+    await Promise.all(Array.from({ length: 15 }).map(async () => {
+      const client = await ClientFactory.build({});
+      await this.prisma.client.create({ data: client });
+    }));
   };
 };

@@ -12,8 +12,4 @@ export class ClientFactory {
       updatedAt: client.updatedAt ?? faker.date.recent(),
     };
   };
-
-  public static async bulk(count: number, client: Partial<Client>): Promise<Client[]> {
-    return Promise.all(Array.from({ length: count }).map(() => this.build(client)));
-  };
 };
