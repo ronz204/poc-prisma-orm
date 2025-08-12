@@ -9,21 +9,20 @@ export class SubsSeeder extends Seeder {
   };
 
   public async seed(): Promise<void> {
-    const users = await this.prisma.user.findMany();
+    const clients = await this.prisma.client.findMany();
     const plans = await this.prisma.plan.findMany();
 
-    const subs = await SubsFactory.bulk(10);
-
-    await Promise.all(subs.map(async (sub) => {
-      const user = faker.helpers.arrayElement(users);
+    await Promise.all(Array.from({ length: 10}).map(async () => {
+      const client = faker.helpers.arrayElement(clients);
       const plan = faker.helpers.arrayElement(plans);
 
-      if (!user || !plan) return;
+      if (!client || !plan) return;
+      const sub = await SubsFactory.build();
 
       await this.prisma.subscription.create({
         data: {
-          userId: user.id,
           planId: plan.id,
+          clientId: client.id,
           status: sub.status,
           autoRenew: sub.autoRenew,
           startDate: sub.startDate,
