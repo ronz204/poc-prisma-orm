@@ -6,8 +6,6 @@ const STATUSES = ["pending", "paid", "overdue"];
 
 export class InvoiceFactory {
   public static async build(invo: Partial<Invoice>): Promise<Invoice> {
-    const amount = invo.amount ?? faker.finance.amount({ min: 5, max: 100, dec: 2 });
-
     const periodStart = invo.periodStart ?? faker.date.past({ years: 1 });
     const periodEnd = invo.periodEnd ?? faker.date.soon({ days: 30, refDate: periodStart });
 
@@ -17,18 +15,14 @@ export class InvoiceFactory {
     return {
       id: invo.id ?? faker.number.int({ min: 1, max: 100 }),
       subscriptionId: invo.subscriptionId ?? faker.number.int({ min: 1, max: 100 }),
-      amount: new Prisma.Decimal(amount),
-      issueDate: issueDate,
-      dueDate: dueDate,
+      amount: new Prisma.Decimal(invo.amount ?? 0),
       status: invo.status ?? faker.helpers.arrayElement(STATUSES),
-      periodStart: periodStart,
-      periodEnd: periodEnd,
+      periodStart: invo.periodStart ?? periodStart,
+      periodEnd: invo.periodEnd ?? periodEnd,
+      issueDate: invo.issueDate ?? issueDate,
+      dueDate: invo.dueDate ?? dueDate,
       createdAt: invo.createdAt ?? issueDate,
       updatedAt: invo.updatedAt ?? dueDate,
     };
-  };
-
-  public static async bulk(count: number, invo: Partial<Invoice>): Promise<Invoice[]> {
-    return Promise.all(Array.from({ length: count }).map(() => this.build(invo)));
   };
 };

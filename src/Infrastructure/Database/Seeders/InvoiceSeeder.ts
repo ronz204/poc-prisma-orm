@@ -9,18 +9,12 @@ export class InvoiceSeeder extends Seeder {
   };
 
   public async seed(): Promise<void> {
-    const subscriptions = await this.prisma.subscription.findMany({
-      include: { plan: true }
-    });
+    const subscriptions = await this.prisma.subscription.findMany({ include: { plan: true } });
 
-    await Promise.all(subscriptions.map(async (sub) => {
-      const planPeriod = sub.plan.period;
-      const startSubDate = sub.startDate;
-
-      for (let index = 0; index < 2; index++) {
-        const periodStart = LuxonHelper.plus(startSubDate, index * planPeriod);
-        const periodEnd = LuxonHelper.plus(periodStart, planPeriod);
-
+    await Promise.all(subscriptions.flatMap(sub => {
+      Array.from({ length: 2 }).map(async (_, index) => {
+        const periodStart = LuxonHelper.plus(sub.startDate, index * sub.plan.period);
+        const periodEnd = LuxonHelper.plus(periodStart, sub.plan.period);
         const issueDate = periodStart;
         const dueDate = LuxonHelper.plus(issueDate, 7);
 
@@ -37,14 +31,14 @@ export class InvoiceSeeder extends Seeder {
           data: {
             subscriptionId: sub.id,
             amount: invoice.amount,
+            status: invoice.status,
             issueDate: invoice.issueDate,
             dueDate: invoice.dueDate,
-            status: invoice.status,
             periodStart: invoice.periodStart,
             periodEnd: invoice.periodEnd,
           },
         });
-      };
+      });
     }));
   };
 };
