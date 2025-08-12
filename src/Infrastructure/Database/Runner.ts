@@ -1,7 +1,9 @@
 import { Prisma } from "./Prisma";
+import { PlanSeeder } from "./Seeders/PlanSeeder";
 import { ClientSeeder } from "./Seeders/ClientSeeder";
 
 const seeders = [
+  new PlanSeeder(Prisma),
   new ClientSeeder(Prisma),
 ];
 
