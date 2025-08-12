@@ -1,17 +1,15 @@
 import { Prisma } from "./Prisma";
-import { UserSeeder } from "./Seeders/UserSeeder";
-import { PlanSeeder } from "./Seeders/PlanSeeder";
 import { SubsSeeder } from "./Seeders/SubsSeeder";
+import { PlanSeeder } from "./Seeders/PlanSeeder";
+import { ClientSeeder } from "./Seeders/ClientSeeder";
 import { InvoiceSeeder } from "./Seeders/InvoiceSeeder";
-import { PaymentSeeder } from "./Seeders/PaymentSeeder";
 
 const seeders = [
-  new UserSeeder(Prisma),
   new PlanSeeder(Prisma),
+  new ClientSeeder(Prisma),
   new SubsSeeder(Prisma),
   new InvoiceSeeder(Prisma),
-  new PaymentSeeder(Prisma),
-];
+];  
 
 export class Runner {
   public static async execute(): Promise<void> {

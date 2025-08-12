@@ -1,6 +1,13 @@
 import { Seeder } from "@Database/Seeder";
 import type { PrismaClient } from "generated/prisma";
-import { PlanFactory } from "@Database/Factories/PlanFactory";
+
+const PLANS = [
+  { name: "Trial", period: 7, price: 0.0 },
+  { name: "Basic", period: 30, price: 9.99 },
+  { name: "Standard", period: 30, price: 19.99 },
+  { name: "Premium", period: 30, price: 29.99 },
+  { name: "Annual", period: 365, price: 99.99 },
+];
 
 export class PlanSeeder extends Seeder {
   constructor(prisma: PrismaClient) {
@@ -8,11 +15,7 @@ export class PlanSeeder extends Seeder {
   };
 
   public async seed(): Promise<void> {
-    const plans = ["Basic", "Standard", "Premium", "Annual", "Trial"];
-
-    await Promise.all(plans.map(async (name) => {
-      const plan = await PlanFactory.build({ name });
-      
+    await Promise.all(PLANS.map(async (plan) => {
       await this.prisma.plan.create({
         data: {
           name: plan.name,

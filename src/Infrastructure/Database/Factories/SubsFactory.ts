@@ -16,7 +16,7 @@ export class SubsFactory {
 
     return {
       id: sub.id ?? faker.number.int({ min: 1, max: 100 }),
-      userId: sub.userId ?? faker.number.int({ min: 1, max: 100 }),
+      clientId: sub.clientId ?? faker.number.int({ min: 1, max: 100 }),
       planId: sub.planId ?? faker.number.int({ min: 1, max: 100 }),
       autoRenew: sub.autoRenew ?? faker.datatype.boolean(),
       status: status,
@@ -25,9 +25,5 @@ export class SubsFactory {
       createdAt: createdAt,
       updatedAt: updatedAt,
     };
-  };
-
-  public static async bulk(count: number, sub: Partial<Subscription> = {}): Promise<Subscription[]> {
-    return Promise.all(Array.from({ length: count }).map(() => this.build(sub)));
   };
 };
