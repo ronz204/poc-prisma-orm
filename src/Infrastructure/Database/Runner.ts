@@ -1,16 +1,8 @@
 import { Prisma } from "./Prisma";
-import { UserSeeder } from "./Seeders/UserSeeder";
-import { PlanSeeder } from "./Seeders/PlanSeeder";
-import { SubsSeeder } from "./Seeders/SubsSeeder";
-import { InvoiceSeeder } from "./Seeders/InvoiceSeeder";
-import { PaymentSeeder } from "./Seeders/PaymentSeeder";
+import { ClientSeeder } from "./Seeders/ClientSeeder";
 
 const seeders = [
-  new UserSeeder(Prisma),
-  new PlanSeeder(Prisma),
-  new SubsSeeder(Prisma),
-  new InvoiceSeeder(Prisma),
-  new PaymentSeeder(Prisma),
+  new ClientSeeder(Prisma),
 ];
 
 export class Runner {
