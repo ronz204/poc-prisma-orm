@@ -1,15 +1,15 @@
 import type { UseCase } from "@UseCases/UseCase";
+import type { ClientDTO } from "@DTOs/ClientDTO";
 import type { GetClientsQuery } from "./GetClientsQuery";
-import type { GetClientsResponse } from "./GetClientsResponse";
 
 import { PrismaClient } from "generated/prisma";
 import { GetClientsSchema } from "./GetClientsSchema";
 import { PaginateHelper } from "@Helpers/PaginateHelper";
 
-export class GetClientsUseCase implements UseCase<GetClientsQuery, GetClientsResponse[]> {
+export class GetClientsUseCase implements UseCase<GetClientsQuery, ClientDTO[]> {
   constructor(private readonly prisma: PrismaClient) {};
 
-  public async execute(query: GetClientsQuery): Promise<GetClientsResponse[]> {
+  public async execute(query: GetClientsQuery): Promise<ClientDTO[]> {
     const validated = await GetClientsSchema.validate(query);
     const pagination = PaginateHelper.paginate(query);
     
