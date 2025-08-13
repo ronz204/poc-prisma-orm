@@ -4,24 +4,20 @@ import type { GetClientsResponse } from "./GetClientsResponse";
 
 import { PrismaClient } from "generated/prisma";
 import { GetClientsSchema } from "./GetClientsSchema";
+import { PaginateHelper } from "@Helpers/PaginateHelper";
 
 export class GetClientsUseCase implements UseCase<GetClientsQuery, GetClientsResponse[]> {
   constructor(private readonly prisma: PrismaClient) {};
 
   public async execute(query: GetClientsQuery): Promise<GetClientsResponse[]> {
     const validated = await GetClientsSchema.validate(query);
-    const { page, limit, order } = validated;
+    const pagination = PaginateHelper.paginate(query);
     
     const clients = await this.prisma.client.findMany({
-      take: limit,
-      skip: (page - 1) * limit,
-      orderBy: { name: order },
-      include: {
-        subscription: {
-          where: { status: "active" },
-          include: { plan: true },
-        },
-      },
+      take: pagination.limit,
+      skip: pagination.offset,
+      orderBy: { name: validated.order },
+      include: { subscription: { include: { plan: true } } },
     });
 
     return clients.map(client => ({
