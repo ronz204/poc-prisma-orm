@@ -11,7 +11,7 @@ const seeders = [
   new SubsSeeder(Prisma),
   new InvoiceSeeder(Prisma),
   new PaymentSeeder(Prisma),
-];  
+];
 
 export class Runner {
   public static async execute(): Promise<void> {
@@ -20,7 +20,7 @@ export class Runner {
         where: { name: seeder.name }
       });
 
-      if (runned) return;
+      if (runned) continue;
       await seeder.seed();
       await Prisma.seeder.create({ data: { name: seeder.name } });
     };
