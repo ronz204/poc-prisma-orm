@@ -8,7 +8,7 @@ import { GetClientSchema } from "./GetClientSchema";
 export class GetClientUseCase implements UseCase<GetClientQuery, ClientDTO> {
   constructor(private readonly prisma: PrismaClient) {};
 
-  async execute(query: GetClientQuery): Promise<ClientDTO> {
+  public async execute(query: GetClientQuery): Promise<ClientDTO> {
     const validated = await GetClientSchema.validate(query);
 
     const client = await this.prisma.client.findUnique({
