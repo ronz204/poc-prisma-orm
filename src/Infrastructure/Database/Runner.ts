@@ -3,13 +3,15 @@ import { SubsSeeder } from "./Seeders/SubsSeeder";
 import { PlanSeeder } from "./Seeders/PlanSeeder";
 import { ClientSeeder } from "./Seeders/ClientSeeder";
 import { InvoiceSeeder } from "./Seeders/InvoiceSeeder";
+import { PaymentSeeder } from "./Seeders/PaymentSeeder";
 
 const seeders = [
   new PlanSeeder(Prisma),
   new ClientSeeder(Prisma),
   new SubsSeeder(Prisma),
   new InvoiceSeeder(Prisma),
-];  
+  new PaymentSeeder(Prisma),
+];
 
 export class Runner {
   public static async execute(): Promise<void> {
@@ -18,7 +20,7 @@ export class Runner {
         where: { name: seeder.name }
       });
 
-      if (runned) return;
+      if (runned) continue;
       await seeder.seed();
       await Prisma.seeder.create({ data: { name: seeder.name } });
     };
