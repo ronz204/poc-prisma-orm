@@ -3,6 +3,9 @@ import { Prisma } from "@Database/Prisma";
 import { SubscribeToUseCase } from "@UseCases/Subs/SubscribeTo/SubscribeToUseCase";
 const subscribeToUseCase = new SubscribeToUseCase(Prisma);
 
+import { UnsubscribeFromUseCase } from "@UseCases/Subs/UnsubscribeFrom/UnsubscribeFromUseCase";
+const unsubscribeFromUseCase = new UnsubscribeFromUseCase(Prisma);
+
 import { GetPlansUseCase } from "@UseCases/Plans/GetPlans/GetPlansUseCase";
 const getPlansUseCase = new GetPlansUseCase(Prisma);
 
