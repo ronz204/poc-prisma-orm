@@ -6,7 +6,7 @@ import { PrismaClient } from "generated/prisma";
 import { GetClientSchema } from "./GetClientSchema";
 
 export class GetClientUseCase implements UseCase<GetClientQuery, ClientDTO> {
-  constructor(private readonly prisma: PrismaClient) {};
+  constructor(private readonly prisma: PrismaClient) { };
 
   public async execute(query: GetClientQuery): Promise<ClientDTO> {
     const validated = await GetClientSchema.validate(query);
@@ -22,12 +22,14 @@ export class GetClientUseCase implements UseCase<GetClientQuery, ClientDTO> {
       id: client.id,
       name: client.name,
       email: client.email,
-      subs: client.subscription.map(sub => ({
-        status: sub.status,
-        plan: sub.plan.name,
-        price: sub.plan.price,
-        period: sub.plan.period,
-      })),
+      sub: client.subscription
+        ? {
+          status: client.subscription.status,
+          plan: client.subscription.plan.name,
+          price: client.subscription.plan.price,
+          period: client.subscription.plan.period,
+        }
+        : null,
     };
   };
 };

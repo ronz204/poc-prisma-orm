@@ -12,11 +12,10 @@ export class SubsSeeder extends Seeder {
     const clients = await this.prisma.client.findMany();
     const plans = await this.prisma.plan.findMany();
 
-    await Promise.all(Array.from({ length: 10}).map(async () => {
-      const client = faker.helpers.arrayElement(clients);
+    await Promise.all(clients.map(async (client) => {
       const plan = faker.helpers.arrayElement(plans);
-
-      if (!client || !plan) return;
+      
+      if (!plan) return;
       const sub = await SubsFactory.build();
 
       await this.prisma.subscription.create({
