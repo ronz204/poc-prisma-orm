@@ -29,3 +29,6 @@ const updateClientUseCase = new UpdateClientUseCase(Prisma);
 
 import { UpdateInvoiceUseCase } from "@UseCases/Invoices/UpdateInvoice/UpdateInvoiceUseCase";
 const updateInvoiceUseCase = new UpdateInvoiceUseCase(Prisma);
+
+import { GetInvoicesUseCase } from "@UseCases/Clients/GetInvoices/GetInvoicesUseCase";
+const getInvoicesUseCase = new GetInvoicesUseCase(Prisma);
