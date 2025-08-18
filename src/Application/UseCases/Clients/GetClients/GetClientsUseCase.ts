@@ -7,12 +7,12 @@ import { GetClientsSchema } from "./GetClientsSchema";
 import { PaginateHelper } from "@Helpers/PaginateHelper";
 
 export class GetClientsUseCase implements UseCase<GetClientsQuery, ClientDTO[]> {
-  constructor(private readonly prisma: PrismaClient) {};
+  constructor(private readonly prisma: PrismaClient) { };
 
   public async execute(query: GetClientsQuery): Promise<ClientDTO[]> {
     const validated = await GetClientsSchema.validate(query);
     const pagination = PaginateHelper.paginate(query);
-    
+
     const clients = await this.prisma.client.findMany({
       take: pagination.limit,
       skip: pagination.offset,
@@ -24,12 +24,14 @@ export class GetClientsUseCase implements UseCase<GetClientsQuery, ClientDTO[]> 
       id: client.id,
       name: client.name,
       email: client.email,
-      subs: client.subscription.map(sub => ({
-        status: sub.status,
-        plan: sub.plan.name,
-        price: sub.plan.price,
-        period: sub.plan.period,
-      }))
+      sub: client.subscription
+        ? {
+          status: client.subscription.status,
+          plan: client.subscription.plan.name,
+          price: client.subscription.plan.price,
+          period: client.subscription.plan.period,
+        }
+        : null
     }));
   };
 };
