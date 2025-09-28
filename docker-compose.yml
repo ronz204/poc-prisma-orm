@@ -17,6 +17,7 @@ services:
 
 volumes:
   poc-prisma-data:
+   name: poc-prisma-vol
 
 networks:
   poc-prisma-network:
