@@ -30,8 +30,8 @@
     "paths": {
       "@Database/*": ["src/Database/*"],
       "@Handlers/*": ["src/Handlers/*"],
-      "@Repos/*": ["src/Repos/*"],
-      "@Specs/*": ["src/Specs/*"],
+      "@Models/*": ["src/Models/*"],
+      "@Repos/*": ["src/Repositories/*"],
     }
   }
 }
