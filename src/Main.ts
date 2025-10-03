@@ -11,4 +11,4 @@ const spec = new StatusUserSpec({
 });
 
 const records = await unit.user.list(spec);
-/* console.log(records[0]?.notes); */
+/* console.log(records[0]?.contracts[0]?.service); */

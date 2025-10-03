@@ -1,6 +1,4 @@
-export class Specification {
-  protected where = {};
-  
+export class Specification {  
   protected skip: number = 0;
   protected take: number = 10;
 
