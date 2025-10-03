@@ -9,20 +9,29 @@ datasource db {
 }
 
 model User {
-  id       Int     @id @default(autoincrement())
-  name     String  @unique @db.VarChar(255)
-  email    String  @unique @db.VarChar(255)
-  active   Boolean @default(true)
-  password String
+  id     Int     @id @default(autoincrement())
+  name   String  @db.VarChar(255)
+  email  String  @unique @db.VarChar(255)
+  phone  String  @unique @db.VarChar(255)
+  active Boolean @default(true)
 
-  notes Note[]
+  contracts Contract[]
 }
 
-model Note {
-  id      Int    @id @default(autoincrement())
-  title   String @db.VarChar(255)
-  content String @db.Text
+model Service {
+  id     Int     @id @default(autoincrement())
+  name   String  @unique @db.VarChar(255)
+  price  Decimal @db.Decimal(10, 2)
+  active Boolean @default(true)
 
-  authorId Int
-  author   User @relation(fields: [authorId], references: [id])
+  contracts Contract[]
+}
+
+model Contract {
+  id        Int @id @default(autoincrement())
+  userId    Int
+  serviceId Int
+
+  user    User    @relation(fields: [userId], references: [id])
+  service Service @relation(fields: [serviceId], references: [id])
 }
