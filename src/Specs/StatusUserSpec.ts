@@ -12,6 +12,5 @@ export class StatusUserSpec extends UserSpecification {
     this.setTake(args.limit);
     this.setSkip(args.page * args.limit);
     this.setWhere({ active: args.active });
-    this.setInclude({ contracts: { include: { service: true } } });
   };
 };
