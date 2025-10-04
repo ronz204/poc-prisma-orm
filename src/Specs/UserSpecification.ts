@@ -19,6 +19,6 @@ export class UserSpecification extends Specification {
       take: this.take,
       where: this.where,
       include: this.include,
-    };
+    } as const;
   };
 };
