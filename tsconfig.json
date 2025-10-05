@@ -29,8 +29,9 @@
     "baseUrl": ".",
     "ignoreDeprecations": "6.0",
     "paths": {
-      "@Database/*": ["src/Database/*"],
       "@Repos/*": ["src/Repositories/*"],
+      "@Database/*": ["src/Database/*"],
+      "@Handlers/*": ["src/Handlers/*"],
       "@Models/*": ["src/Models/*"],
       "@Specs/*": ["src/Specs/*"],
     }
