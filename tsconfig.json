@@ -34,5 +34,6 @@
       "@Models/*": ["src/Models/*"],
       "@Specs/*": ["src/Specs/*"],
     }
-  }
+  },
+  "include": ["src/**/*", "tests/**/*"],
 }
