@@ -1,13 +1,13 @@
-import { Unit } from "@Database/Unit";
 import { Prisma } from "@Database/Prisma";
-import { StatusUserSpec } from "@Specs/StatusUserSpec";
+import { CreateUserHandler } from "@Handlers/Users/Create/CreateUserHandler";
 
-const unit = new Unit(Prisma);
+const handler = new CreateUserHandler(Prisma);
 
-const spec = new StatusUserSpec({
-  active: true,
-  limit: 10,
-  page: 0,
+const created = await handler.handle({
+  country: "USA",
+  name: "tester",
+  email: "tester@example.com",
+  phone: "1234567890"
 });
 
-
+console.log(created);
