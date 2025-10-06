@@ -28,8 +28,7 @@
     // Base url & path aliases
     "baseUrl": ".",
     "ignoreDeprecations": "6.0",
-    "paths": {
-      "@Repos/*": ["src/Repositories/*"],
+    "paths": {  
       "@Database/*": ["src/Database/*"],
       "@Handlers/*": ["src/Handlers/*"],
       "@Models/*": ["src/Models/*"],
