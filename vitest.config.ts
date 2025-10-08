@@ -3,7 +3,10 @@ import { defineConfig, configDefaults } from "vitest/config";
 
 const excluded: string[] = [
   ...configDefaults.exclude,
+  "**/node_modules/**",
   "**/generated/**",
+  "**/prisma/**",
+  "**/dist/**",
 ];
 
 export default defineConfig({
