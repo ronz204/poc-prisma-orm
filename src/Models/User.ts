@@ -8,6 +8,7 @@ export namespace User {
 
   export type Include = Prisma.UserInclude;
   export type Where = Prisma.UserWhereInput;
+  export type Unique = Prisma.UserWhereUniqueInput;
 
   export type Create = Prisma.UserCreateInput;
   export type Update = Prisma.UserUpdateInput;
