@@ -2,8 +2,8 @@ import type { User } from "@Models/User";
 import { Specification } from "./Specification";
 
 export abstract class UserSpecification extends Specification {
-  protected where: User.Where = {} as User.Where;
-  protected unique: User.Unique = {} as User.Unique;
+  protected where!: User.Where;
+  protected unique!: User.Unique;
 
   public abstract toQuery(): object;
 
