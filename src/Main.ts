@@ -1,6 +1,7 @@
 import { Prisma } from "@Database/Prisma";
 import { CreateUserHandler } from "@Handlers/Users/Create/CreateUserHandler";
 import { UpdateUserHandler } from "@Handlers/Users/Update/UpdateUserHandler";
+import { DeleteUserHandler } from "@Handlers/Users/Delete/DeleteUserHandler";
 
 const handler = new CreateUserHandler(Prisma);
 
