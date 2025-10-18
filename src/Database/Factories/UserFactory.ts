@@ -2,7 +2,7 @@ import { faker } from "@faker-js/faker";
 import type { User } from "@Models/User";
 
 export class UserFactory {
-  public static async build(user: User.Optional = {}): Promise<User.Entity> {
+  public static build(user: User.Optional = {}): User.Entity {
     return {
       id: user.id ?? faker.number.int({ min: 1, max: 1000 }),
       phone: user.phone ?? faker.phone.number(),
