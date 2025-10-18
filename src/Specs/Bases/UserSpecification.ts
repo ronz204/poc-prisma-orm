@@ -1,5 +1,5 @@
 import type { User } from "@Models/User";
-import { Specification } from "./Specification";
+import { Specification } from "@Specs/Specification";
 
 export abstract class UserSpecification extends Specification {
   protected where!: User.Where;
