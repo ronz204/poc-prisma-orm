@@ -8,7 +8,7 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User {
+model Customer {
   id      Int     @id @default(autoincrement())
   name    String  @db.VarChar(255)
   email   String  @unique @db.VarChar(255)
@@ -29,13 +29,13 @@ model Service {
 }
 
 model Contract {
-  id        Int       @id @default(autoincrement())
-  userId    Int
-  serviceId Int
-  active    Boolean   @default(true)
-  startDate DateTime  @default(now())
-  endDate   DateTime?
+  id         Int       @id @default(autoincrement())
+  serviceId  Int
+  customerId Int
+  active     Boolean   @default(true)
+  startDate  DateTime  @default(now())
+  endDate    DateTime?
 
-  user    User    @relation(fields: [userId], references: [id])
-  service Service @relation(fields: [serviceId], references: [id])
+  service  Service  @relation(fields: [serviceId], references: [id])
+  customer Customer @relation(fields: [customerId], references: [id])
 }
