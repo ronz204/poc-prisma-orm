@@ -1,8 +1,9 @@
+import type { Customer } from "@Models/Customer";
 import { CustomerSpecification } from "@Specs/Bases/CustomerSpecification";
 
 interface Args {
-  id?: number;
-  email?: string;
+  id?: Customer.Entity["id"];
+  email?: Customer.Entity["email"];
 };
 
 export class VerifyCustomerExistSpec extends CustomerSpecification {
@@ -18,7 +19,7 @@ export class VerifyCustomerExistSpec extends CustomerSpecification {
 
   public toQuery() {
     return {
-      where: this.where,
+      where: this.getWhere(),
     } as const;
   };
 };
