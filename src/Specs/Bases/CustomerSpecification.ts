@@ -2,8 +2,8 @@ import type { Customer } from "@Models/Customer";
 import { Specification } from "@Specs/Specification";
 
 export abstract class CustomerSpecification extends Specification {
-  protected where!: Customer.Where;
-  protected unique!: Customer.Unique;
+  private where!: Customer.Where;
+  private unique!: Customer.Unique;
 
   public abstract toQuery(): object;
 
@@ -11,7 +11,15 @@ export abstract class CustomerSpecification extends Specification {
     this.where = value; return this
   };
 
+  public getWhere(): Customer.Where {
+    return this.where;
+  };
+
   public setUnique(value: Customer.Unique): this {
     this.unique = value; return this
+  };
+
+  public getUnique(): Customer.Unique {
+    return this.unique;
   };
 };
