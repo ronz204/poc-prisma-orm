@@ -1,15 +1,15 @@
 import type { Customer } from "@Models/Customer";
-import { CustomerSpecification } from "@Specs/Bases/CustomerSpecification";
+import { CustomerSpec } from "@Specs/Bases/CustomerSpec";
 
 interface Args {
   id: Customer.Entity["id"];
   data: Customer.Update;
 };
 
-export class UpdateCustomerSpec extends CustomerSpecification {
+export class UpdateCustomerSpec extends CustomerSpec {
   constructor(private readonly args: Args) {
     super();
-    this.setUnique({ id: this.args.id });
+    this.setUnique({ id: args.id });
   };
 
   public toQuery() {
