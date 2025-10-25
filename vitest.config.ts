@@ -7,6 +7,7 @@ const excluded: string[] = [
   "**/generated/**",
   "**/prisma/**",
   "**/dist/**",
+  "**/docs/**",
 ];
 
 export default defineConfig({
