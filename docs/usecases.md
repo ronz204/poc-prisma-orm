@@ -15,3 +15,23 @@
 **UC-003:** Update Customer Data
 
 **Description:** The system must allow modification and correction of personal information for customers already registered in the system. The data that can be updated includes the customer's full name and country of residence. However, there is an important restriction: when attempting to modify the customer's email address or phone number, the system must verify that the new values are not being used by another existing customer. If the information is already in use, the system must reject the update and inform the user about this situation. This validation ensures that the uniqueness of these critical fields is maintained in the database.
+
+---
+
+**UC-004:** Suspend Customer Account
+
+**Description:** The system must provide the functionality to temporarily or permanently deactivate a customer's account when necessary. This action changes the customer's status from active to inactive, preventing them from accessing system features or contracting new services. However, all historical data, including previous contracts, service history, and personal information, must remain preserved in the system for audit and reference purposes. The deactivation process should be reversible, allowing the account to be reactivated in the future if needed. This feature is essential for managing customers who may have payment issues, policy violations, or simply wish to temporarily suspend their relationship with the company.
+
+---
+
+**UC-005:** Register New Service Offering
+
+**Description:** The system must allow authorized personnel to add new service offerings to the company's catalog available for customers. During the service registration process, the following information must be provided: a unique service name that clearly identifies the offering (the system must verify this name is not already in use), and the service price expressed in monetary units with decimal precision for accurate billing. Once successfully registered, the new service is automatically marked as active and becomes immediately available for customers to contract. The system must ensure that service names remain unique across the entire catalog to prevent confusion and maintain clear service identification for both customers and administrative staff.
+
+---
+
+**UC-006:** Display Available Service Catalog
+
+**Description:** The system must provide a comprehensive view of all services currently available for customer purchase and contracting. This functionality displays a complete catalog showing only active services, including their names, current pricing information, and any relevant service details. The catalog should be presented in a user-friendly format that allows easy browsing and comparison of different service options. This feature serves both customers who want to explore available offerings and staff members who need to reference current services during sales processes. The system must automatically exclude any inactive or suspended services from this display, ensuring that only purchasable services are shown to potential customers.
+
+---
