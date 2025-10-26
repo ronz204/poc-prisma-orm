@@ -3,8 +3,8 @@ import type { SuspendCustomerCommand as Command } from "./SuspendCustomerSchema"
 import type { SuspendCustomerResponse as Response } from "./SuspendCustomerResponse";
 
 import { PrismaClient } from "generated/prisma";
+import { SuspendCustomerSpec } from "./SuspendCustomerSpec";
 import { SuspendCustomerSchema } from "./SuspendCustomerSchema";
-import { UpdateCustomerSpec } from "@Specs/Shared/UpdateCustomerSpec";
 import { VerifyCustomerExistSpec } from "@Specs/Shared/VerifyCustomerExistSpec";
 
 export class SuspendCustomerHandler implements Handler<Command, Response> {
@@ -18,8 +18,8 @@ export class SuspendCustomerHandler implements Handler<Command, Response> {
 
     if (!existing) throw new Error("Customer does not exist.");
 
-    const updateSpec = new UpdateCustomerSpec({ id: validated.id, data: { active: false } });
-    const updated = await this.prisma.customer.update(updateSpec.toQuery());
+    const suspendSpec = new SuspendCustomerSpec(validated);
+    const updated = await this.prisma.customer.update(suspendSpec.toQuery());
 
     return {
       id: updated.id,
