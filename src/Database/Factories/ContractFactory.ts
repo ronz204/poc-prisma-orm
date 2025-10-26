@@ -7,7 +7,7 @@ export class ContractFactory {
 
     return {
       id: contract.id ?? faker.number.int({ min: 1, max: 1000 }),
-      userId: contract.userId ?? faker.number.int({ min: 1, max: 100 }),
+      customerId: contract.customerId ?? faker.number.int({ min: 1, max: 100 }),
       serviceId: contract.serviceId ?? faker.number.int({ min: 1, max: 50 }),
       active: contract.active ?? faker.datatype.boolean(),
       startDate: startDate,
