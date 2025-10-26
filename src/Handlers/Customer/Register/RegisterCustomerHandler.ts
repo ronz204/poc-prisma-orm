@@ -3,8 +3,8 @@ import type { RegisterCustomerCommand as Command } from "./RegisterCustomerSchem
 import type { RegisterCustomerResponse as Response } from "./RegisterCustomerResponse";
 
 import { PrismaClient } from "generated/prisma";
+import { RegisterCustomerSpec } from "./RegisterCustomerSpec";
 import { RegisterCustomerSchema } from "./RegisterCustomerSchema";
-import { RegisterCustomerSpec } from "@Specs/Shared/RegisterCustomerSpec";
 import { VerifyCustomerExistSpec } from "@Specs/Shared/VerifyCustomerExistSpec";
 
 export class RegisterCustomerHandler implements Handler<Command, Response> {
@@ -18,7 +18,7 @@ export class RegisterCustomerHandler implements Handler<Command, Response> {
 
     if (existing) throw new Error("Customer with this email already exists.");
 
-    const registerSpec = new RegisterCustomerSpec({ data: validated });
+    const registerSpec = new RegisterCustomerSpec(validated);
     const created = await this.prisma.customer.create(registerSpec.toQuery());
 
     return {
