@@ -2,7 +2,7 @@ import { ServiceSpec } from "@Specs/Bases/ServiceSpec";
 import type { RegisterServiceCommand } from "./RegisterServiceSchema";
 
 export class RegisterServiceSpec extends ServiceSpec {
-  constructor(public command: RegisterServiceCommand) { super() };
+  constructor(private command: RegisterServiceCommand) { super() };
 
   public toQuery() {
     return {
