@@ -3,8 +3,8 @@ import type { UpdateCustomerCommand as Command } from "./UpdateCustomerSchema";
 import type { UpdateCustomerResponse as Response } from "./UpdateCustomerResponse";
 
 import { PrismaClient } from "generated/prisma";
+import { UpdateCustomerSpec } from "./UpdateCustomerSpec";
 import { UpdateCustomerSchema } from "./UpdateCustomerSchema";
-import { UpdateCustomerSpec } from "@Specs/Shared/UpdateCustomerSpec";
 import { VerifyCustomerExistSpec } from "@Specs/Shared/VerifyCustomerExistSpec";
 
 export class UpdateCustomerHandler implements Handler<Command, Response> {
@@ -18,7 +18,7 @@ export class UpdateCustomerHandler implements Handler<Command, Response> {
 
     if (!existing) throw new Error("Customer does not exist.");
 
-    const updateSpec = new UpdateCustomerSpec({ id: validated.id, data: validated });
+    const updateSpec = new UpdateCustomerSpec(validated);
     const updated = await this.prisma.customer.update(updateSpec.toQuery());
 
     return {
