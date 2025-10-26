@@ -18,7 +18,7 @@ export class UpdateCustomerHandler implements Handler<Command, Response> {
 
     if (!existing) throw new Error("Customer does not exist.");
 
-    const updateSpec = new UpdateCustomerSpec({ id: validated.id, data: validated.data });
+    const updateSpec = new UpdateCustomerSpec({ id: validated.id, data: validated });
     const updated = await this.prisma.customer.update(updateSpec.toQuery());
 
     return {
