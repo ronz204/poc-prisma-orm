@@ -1,6 +1,6 @@
+import Decimal from "decimal.js";
 import { faker } from "@faker-js/faker";
 import type { Service } from "@Models/Service";
-import { Decimal } from "generated/prisma/runtime/library";
 
 export class ServiceFactory {
   public static build(service: Service.Optional = {}): Service.Entity {
