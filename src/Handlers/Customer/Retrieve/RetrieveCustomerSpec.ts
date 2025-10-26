@@ -1,14 +1,10 @@
-import type { Customer } from "@Models/Customer";
 import { CustomerSpec } from "@Specs/Bases/CustomerSpec";
-
-interface Args {
-  id: Customer.Entity["id"];
-};
+import type { RetrieveCustomerQuery } from "./RetrieveCustomerSchema";
 
 export class RetrieveCustomerSpec extends CustomerSpec {
-  constructor(private readonly args: Args) {
+  constructor(private query: RetrieveCustomerQuery) {
     super();
-    this.setWhere({ id: args.id });
+    this.setWhere({ id: query.id });
   };
 
   public toQuery() {

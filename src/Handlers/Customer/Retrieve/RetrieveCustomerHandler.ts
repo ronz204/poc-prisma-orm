@@ -3,8 +3,8 @@ import type { RetrieveCustomerQuery as Query } from "./RetrieveCustomerSchema";
 import type { RetrieveCustomerResponse as Response } from "./RetrieveCustomerResponse";
 
 import { PrismaClient } from "generated/prisma";
+import { RetrieveCustomerSpec } from "./RetrieveCustomerSpec";
 import { RetrieveCustomerSchema } from "./RetrieveCustomerSchema";
-import { RetrieveCustomerSpec } from "@Specs/Shared/RetrieveCustomerSpec";
 
 export class RetrieveCustomerHandler implements Handler<Query, Response> {
   constructor(private prisma: PrismaClient) { };
@@ -12,7 +12,7 @@ export class RetrieveCustomerHandler implements Handler<Query, Response> {
   public async handle(query: Query): Promise<Response> {
     const validated = RetrieveCustomerSchema.parse(query);
 
-    const retrieveSpec = new RetrieveCustomerSpec({ id: validated.id });
+    const retrieveSpec = new RetrieveCustomerSpec(validated);
     const retrieved = await this.prisma.customer.findFirst(retrieveSpec.toQuery());
 
     if (!retrieved) throw new Error("Customer does not exist.");
