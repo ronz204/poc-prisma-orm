@@ -35,3 +35,19 @@
 **Description:** The system must provide a comprehensive view of all services currently available for customer purchase and contracting. This functionality displays a complete catalog showing only active services, including their names, current pricing information, and any relevant service details. The catalog should be presented in a user-friendly format that allows easy browsing and comparison of different service options. This feature serves both customers who want to explore available offerings and staff members who need to reference current services during sales processes. The system must automatically exclude any inactive or suspended services from this display, ensuring that only purchasable services are shown to potential customers.
 
 ---
+
+**UC-007:** Modify Service Price
+
+**Description:** The system must allow authorized personnel to update and adjust the pricing of existing services in the company's catalog when market conditions or business requirements change. This functionality enables the modification of service costs while maintaining historical pricing data for audit and reporting purposes. The price adjustment process requires careful validation to ensure that the new price is entered with proper decimal precision and follows established pricing policies. Once the price modification is completed successfully, the updated pricing becomes immediately effective for new customer contracts, while existing active contracts maintain their original agreed-upon pricing. This feature is crucial for maintaining competitive pricing strategies and responding to market fluctuations or cost changes in service delivery.
+
+---
+
+**UC-008:** Formalize Service Contract
+
+**Description:** The system must enable the creation of binding service agreements that establish a contractual relationship between an active customer and a specific service offering. This process can only be executed when both the customer account and the selected service are in active status, ensuring that all parties meet current operational requirements. The contract formalization automatically records the current date as the agreement start date and initially marks the contract as active with no predetermined end date. The system must validate customer eligibility and service availability before proceeding with contract creation. This functionality serves as the foundation for the customer-service relationship, establishing clear terms and enabling proper tracking of service commitments and customer obligations throughout the contract lifecycle.
+
+---
+
+**UC-009:** Review Customer Contract History
+
+**Description:** The system must provide comprehensive access to a complete chronological record of all service agreements associated with a specific customer account. This functionality displays both currently active contracts and previously terminated agreements, providing a full historical perspective of the customer's relationship with the company. Each contract entry in the history shows detailed information including the associated service name, contract start date, current status (active or terminated), and end date when applicable. This feature enables customer service representatives and management to understand the customer's service evolution, identify patterns in service usage, and make informed decisions about future service offerings. The historical view supports both customer inquiries and internal business analysis requirements.
