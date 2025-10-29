@@ -2,12 +2,12 @@ import { describe, expect, it, vi } from "vitest";
 
 import * as zod from "zod";
 import { Prisma } from "@Database/Prisma";
-import { RegisterCustomerHandlerFixture } from "./RegisterCustomerHandlerFixture";
+import { RegisterCustomerFixture } from "./RegisterCustomerFixture";
 import { RegisterCustomerHandler } from "@Handlers/Customer/Register/RegisterCustomerHandler";
 
 describe("register customer handler", () => {
   const handler = new RegisterCustomerHandler(Prisma);
-  const { customer, command } = RegisterCustomerHandlerFixture;
+  const { customer, command } = RegisterCustomerFixture;
 
   it("should register a customer successfully", async () => {
     vi.spyOn(Prisma.customer, "create").mockResolvedValue(customer);
