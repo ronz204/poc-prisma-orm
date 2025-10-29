@@ -5,6 +5,9 @@ export abstract class ServiceSpec extends Specification {
   private where!: Service.Where;
   private unique!: Service.Unique;
 
+  private update!: Service.Update;
+  private create!: Service.Create;
+
   public abstract toQuery(): object;
 
   protected setWhere(value: Service.Where): this {
@@ -21,6 +24,22 @@ export abstract class ServiceSpec extends Specification {
 
   protected getUnique(): Service.Unique {
     return this.unique;
+  };
+
+  protected setUpdate(value: Service.Update): this {
+    this.update = value; return this
+  };
+
+  protected getUpdate(): Service.Update {
+    return this.update;
+  };
+
+  protected setCreate(value: Service.Create): this {
+    this.create = value; return this
+  };
+
+  protected getCreate(): Service.Create {
+    return this.create;
   };
 
   protected withContracts() {
