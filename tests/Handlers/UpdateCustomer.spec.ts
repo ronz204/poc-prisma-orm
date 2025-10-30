@@ -2,7 +2,7 @@ import { describe, expect, it, vi } from "vitest";
 
 import * as zod from "zod";
 import { Prisma } from "@Database/Prisma";
-import { UpdateCustomerFixture } from "./UpdateCustomerFixture";
+import { UpdateCustomerFixture } from "@Fixtures/UpdateCustomerFixture";
 import { UpdateCustomerHandler } from "@Handlers/Customer/Update/UpdateCustomerHandler";
 
 describe("update customer handler", () => {

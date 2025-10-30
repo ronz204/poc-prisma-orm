@@ -28,7 +28,8 @@
     // Base url & path aliases
     "baseUrl": ".",
     "ignoreDeprecations": "6.0",
-    "paths": {  
+    "paths": {
+      "@Fixtures/*": ["tests/Fixtures/*"],
       "@Database/*": ["src/Database/*"],
       "@Handlers/*": ["src/Handlers/*"],
       "@Models/*": ["src/Models/*"],
