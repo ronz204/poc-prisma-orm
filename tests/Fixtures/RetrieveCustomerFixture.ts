@@ -26,20 +26,11 @@ export const RetrieveCustomerFixture = {
   service: service,
   contract: contract,
   customer: {
-    id: customer.id,
-    name: customer.name,
-    email: customer.email,
-    phone: customer.phone,
-    active: customer.active,
-    country: customer.country,
-    contracts: [
-      {
-        id: contract.id,
-        service: service,
-        active: contract.active,
-        startDate: contract.startDate,
-      },
-    ],
+    ...customer,
+    contracts: [{
+      ...contract,
+      service: service,
+    }],
   },
   query: {
     valid: {
