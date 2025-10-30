@@ -1,7 +1,6 @@
-import { describe, expect, it, vi } from "vitest";
-
 import * as zod from "zod";
 import { Prisma } from "@Database/Prisma";
+import { describe, expect, it, vi } from "vitest";
 import { RegisterCustomerFixture } from "@Fixtures/RegisterCustomerFixture";
 import { RegisterCustomerHandler } from "@Handlers/Customer/Register/RegisterCustomerHandler";
 
