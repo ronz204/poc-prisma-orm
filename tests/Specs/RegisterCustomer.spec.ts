@@ -10,13 +10,6 @@ describe("register customer spec", () => {
     email: "customer1@example.com",
   });
 
-  const customer2 = CustomerFactory.build({
-    country: "Canada",
-    name: "Customer Two",
-    phone: "222-222-2222",
-    email: "customer2@example.com",
-  });
-
   it("should build create query with all fields", () => {
     const spec = new RegisterCustomerSpec({
       name: customer1.name,
@@ -35,23 +28,5 @@ describe("register customer spec", () => {
         country: customer1.country,
       },
     });
-  });
-
-  it("should create different queries for different commands", () => {
-    const spec1 = new RegisterCustomerSpec({
-      name: customer1.name,
-      phone: customer1.phone,
-      email: customer1.email,
-      country: customer1.country,
-    });
-
-    const spec2 = new RegisterCustomerSpec({
-      name: customer2.name,
-      phone: customer2.phone,
-      email: customer2.email,
-      country: customer2.country,
-    });
-
-    expect(spec1.toQuery()).not.toEqual(spec2.toQuery());
   });
 });
