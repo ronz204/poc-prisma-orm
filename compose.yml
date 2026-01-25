@@ -5,10 +5,8 @@ services:
     image: postgres:15-alpine
     container_name: postgres
     restart: unless-stopped
-    environment:
-      - POSTGRES_DB=orm
-      - POSTGRES_USER=prisma
-      - POSTGRES_PASSWORD=prisma1234
+    env_file:
+      - .env
     networks:
       - prisma-network
     volumes:
