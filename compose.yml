@@ -5,8 +5,10 @@ services:
     image: postgres:15-alpine
     container_name: postgres
     restart: unless-stopped
+    ports:
+      - "5432:5432"
     env_file:
-      - .env
+      - ./playground/.env
     networks:
       - prisma-network
     volumes:
@@ -20,4 +22,4 @@ volumes:
 networks:
   prisma-network:
     driver: bridge
-    name: prisma-net
+    name: prisma-network
