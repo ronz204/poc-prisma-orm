@@ -41,3 +41,16 @@ model Player {
   @@map("players")
   @@schema("esports")
 }
+
+model Team {
+  id       Int     @id @default(autoincrement())
+  tag      String  @unique
+  name     String  @unique
+  isActive Boolean @default(true)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("teams")
+  @@schema("esports")
+}
