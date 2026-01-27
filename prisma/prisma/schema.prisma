@@ -24,6 +24,15 @@ enum PlayerStatus {
   @@schema("esports")
 }
 
+enum SponsorTier {
+  GOLD
+  SILVER
+  BRONZE
+
+  @@map("sponsor_tier")
+  @@schema("esports")
+}
+
 model Player {
   id     Int          @id @default(autoincrement())
   name   String       @unique
@@ -52,5 +61,22 @@ model Team {
   updatedAt DateTime @updatedAt
 
   @@map("teams")
+  @@schema("esports")
+}
+
+model Sponsor {
+  id         Int         @id @default(autoincrement())
+  name       String      @unique
+  tier       SponsorTier @default(BRONZE)
+  logoUrl    String?
+  websiteUrl String?
+
+  contactEmail String?
+  contactPhone String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("sponsors")
   @@schema("esports")
 }
