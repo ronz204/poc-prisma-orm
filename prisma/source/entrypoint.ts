@@ -1,12 +1,17 @@
-import type { User } from "@Prisma/client";
+import { Prisma } from "@Database/prisma";
+import type { UserGetPayload, UserInclude } from "@Prisma/models";
 
-const user: User = {
-  id: 1,
-  name: "Jhon Doe",
-  email: "",
-  password: "",
-  createdAt: new Date(),
-  updatedAt: new Date(),
+const spec = {
+  loans: { include: { book: true } }
+} satisfies UserInclude;
+
+export type UserWithLoans = UserGetPayload<{ include: typeof spec }>;
+
+export const getUsersWithLoans = async (): Promise<UserWithLoans[]> => {
+  return await Prisma.user.findMany({
+    include: spec,
+  });
 };
 
-console.log(user);
+const records = await getUsersWithLoans();
+console.log(records[0]?.loans[0]?.book.title);
