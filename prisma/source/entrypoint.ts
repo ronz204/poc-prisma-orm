@@ -1,4 +1,12 @@
 import { Prisma } from "@Database/prisma";
+
+
+
+
+
+
+
+/* import { Prisma } from "@Database/prisma";
 import type { UserInclude } from "@Prisma/models";
 
 const include = { loans: { include: { book: true } } } satisfies UserInclude;
@@ -9,3 +17,4 @@ export const getUsersWithLoans = async () => {
 
 const records = await getUsersWithLoans();
 console.log(records[0]?.loans[0]?.book.title);
+ */
