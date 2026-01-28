@@ -24,6 +24,16 @@ enum PlayerStatus {
   @@schema("esports")
 }
 
+enum TeamMemberRole {
+  SUBSTITUTE
+  CAPTAIN
+  PLAYER
+  COACH
+
+  @@map("team_member_role")
+  @@schema("esports")
+}
+
 enum SponsorTier {
   GOLD
   SILVER
@@ -66,6 +76,8 @@ model Player {
   totalWins   Int @default(0)
   totalLosses Int @default(0)
 
+  members Member[]
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
@@ -79,10 +91,32 @@ model Team {
   name     String  @unique
   isActive Boolean @default(true)
 
+  members Member[]
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
   @@map("teams")
+  @@schema("esports")
+}
+
+model Member {
+  id       Int @id @default(autoincrement())
+  teamId   Int
+  playerId Int
+
+  role     TeamMemberRole @default(PLAYER)
+  joinedAt DateTime       @default(now())
+  leftAt   DateTime?
+
+  team   Team   @relation(fields: [teamId], references: [id])
+  player Player @relation(fields: [playerId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([playerId, teamId])
+  @@map("members")
   @@schema("esports")
 }
 
@@ -120,8 +154,8 @@ model Game {
 }
 
 model Tournament {
-  id     Int              @id @default(autoincrement())
-  title  String           @unique
+  id     Int    @id @default(autoincrement())
+  title  String @unique
   gameId Int
 
   status TournamentStatus @default(REGISTRATION_OPEN)
