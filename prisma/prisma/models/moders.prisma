@@ -1,0 +1,22 @@
+enum ModerRole {
+  ADMIN
+  VIEWER
+  REFEREE
+
+  @@map("moder_role")
+  @@schema("esports")
+}
+
+model Moder {
+  id    Int       @id @default(autoincrement())
+  name  String    @unique
+  email String    @unique
+  role  ModerRole @default(VIEWER)
+
+  assignedAt DateTime @default(now())
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  @@map("moders")
+  @@schema("esports")
+}
