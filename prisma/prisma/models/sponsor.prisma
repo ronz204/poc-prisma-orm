@@ -1,0 +1,26 @@
+enum SponsorTier {
+  GOLD
+  SILVER
+  BRONZE
+
+  @@map("sponsor_tier")
+  @@schema("esports")
+}
+
+model Sponsor {
+  id   Int         @id @default(autoincrement())
+  name String      @unique
+  tier SponsorTier
+
+  logoUrl    String?
+  websiteUrl String?
+
+  contactEmail String?
+  contactPhone String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("sponsors")
+  @@schema("esports")
+}
