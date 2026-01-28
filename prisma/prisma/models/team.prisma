@@ -5,6 +5,8 @@ model Team {
   logoUrl  String?
   isActive Boolean @default(true)
 
+  members Member[]
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 

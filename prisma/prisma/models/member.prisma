@@ -1,0 +1,30 @@
+enum MemberRole {
+  SUBSTITUTE
+  CAPTAIN
+  PLAYER
+  COACH
+
+  @@map("member_role")
+  @@schema("esports")
+}
+
+model Member {
+  id   Int        @id @default(autoincrement())
+  role MemberRole @default(PLAYER)
+
+  teamId Int
+  team   Team @relation(fields: [teamId], references: [id])
+
+  playerId Int
+  player   Player @relation(fields: [playerId], references: [id])
+
+  joinedAt DateTime  @default(now())
+  leftAt   DateTime?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([teamId, playerId])
+  @@map("members")
+  @@schema("esports")
+}
