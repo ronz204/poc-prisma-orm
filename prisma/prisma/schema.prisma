@@ -33,6 +33,28 @@ enum SponsorTier {
   @@schema("esports")
 }
 
+enum TournamentStatus {
+  REGISTRATION_OPEN
+  REGISTRATION_CLOSED
+  IN_PROGRESS
+  COMPLETED
+  CANCELLED
+
+  @@map("tournament_status")
+  @@schema("esports")
+}
+
+enum TournamentFormat {
+  SINGLE_ELIMINATION
+  DOUBLE_ELIMINATION
+  ROUND_ROBIN
+  GROUP_STAGE
+  SWISS
+
+  @@map("tournament_format")
+  @@schema("esports")
+}
+
 model Player {
   id     Int          @id @default(autoincrement())
   name   String       @unique
@@ -82,15 +104,46 @@ model Sponsor {
 }
 
 model Game {
-  id          Int      @id @default(autoincrement())
-  title       String   @unique
-  genre       String
-  developer   String
-  publisher   String
+  id        Int    @id @default(autoincrement())
+  title     String @unique
+  genre     String
+  developer String
+  publisher String
+
+  tournaments Tournament[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
   @@map("games")
+  @@schema("esports")
+}
+
+model Tournament {
+  id     Int              @id @default(autoincrement())
+  title  String           @unique
+  gameId Int
+
+  status TournamentStatus @default(REGISTRATION_OPEN)
+  format TournamentFormat @default(SINGLE_ELIMINATION)
+
+  maxTeams    Int
+  minTeamSize Int
+  maxTeamSize Int
+
+  prizePool Decimal
+  currency  String
+
+  registrationStart DateTime
+  registrationEnd   DateTime
+  tournamentStart   DateTime
+  tournamentEnd     DateTime
+
+  game Game @relation(fields: [gameId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("tournaments")
   @@schema("esports")
 }
