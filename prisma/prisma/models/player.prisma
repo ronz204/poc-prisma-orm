@@ -1,0 +1,26 @@
+enum PlayerStatus {
+  ACTIVE
+  RETIRED
+  INACTIVE
+  SUSPENDED
+
+  @@map("player_status")
+  @@schema("esports")
+}
+
+model Player {
+  id          Int          @id @default(autoincrement())
+  name        String       @unique
+  email       String       @unique
+  isFreeAgent Boolean      @default(false)
+  status      PlayerStatus @default(ACTIVE)
+
+  totalWins   Int @default(0)
+  totalLosses Int @default(0)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("players")
+  @@schema("esports")
+}
