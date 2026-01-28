@@ -1,0 +1,49 @@
+enum TournamentStatus {
+  REGISTRATION_OPEN
+  REGISTRATION_CLOSED
+  IN_PROGRESS
+  COMPLETED
+  CANCELLED
+
+  @@map("tournament_status")
+  @@schema("esports")
+}
+
+enum TournamentFormat {
+  SINGLE_ELIMINATION
+  DOUBLE_ELIMINATION
+  ROUND_ROBIN
+  GROUP_STAGE
+  SWISS
+
+  @@map("tournament_format")
+  @@schema("esports")
+}
+
+model Tournament {
+  id        Int     @id @default(autoincrement())
+  name      String  @unique
+  prizePool Decimal @default(0) @db.Decimal(12, 2)
+  currency  String  @default("USD")
+
+  status   TournamentStatus @default(REGISTRATION_OPEN)
+  format   TournamentFormat @default(SINGLE_ELIMINATION)
+
+  maxTeams    Int
+  minTeamSize Int
+  maxTeamSize Int
+
+  gameId Int
+  game   Game @relation(fields: [gameId], references: [id])
+
+  registrationStart DateTime
+  registrationEnd   DateTime
+  tournamentStart   DateTime
+  tournamentEnd     DateTime
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("tournaments")
+  @@schema("esports")
+}

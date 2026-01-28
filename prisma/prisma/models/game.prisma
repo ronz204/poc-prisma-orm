@@ -5,6 +5,8 @@ model Game {
   developer String
   publisher String
 
+  tournaments Tournament[]
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
