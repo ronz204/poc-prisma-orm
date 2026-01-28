@@ -65,6 +65,19 @@ enum TournamentFormat {
   @@schema("esports")
 }
 
+enum TournamentPhase {
+  GROUPS
+  ROUND_OF_32
+  ROUND_OF_16
+  QUARTERFINALS
+  SEMIFINALS
+  THIRD_PLACE
+  FINALS
+
+  @@map("tournament_phase")
+  @@schema("esports")
+}
+
 model Player {
   id     Int          @id @default(autoincrement())
   name   String       @unique
@@ -91,10 +104,14 @@ model Team {
   name     String  @unique
   isActive Boolean @default(true)
 
-  members Member[]
+  members            Member[]
+  matchesAsTeamAlpha Match[]  @relation("TeamAlpha")
+  matchesAsTeamBeta  Match[]  @relation("TeamBeta")
+  matchesAsWinner    Match[]  @relation("Winner")
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  matches   Match[]
 
   @@map("teams")
   @@schema("esports")
@@ -173,11 +190,36 @@ model Tournament {
   tournamentStart   DateTime
   tournamentEnd     DateTime
 
-  game Game @relation(fields: [gameId], references: [id])
+  matches Match[]
+  game    Game    @relation(fields: [gameId], references: [id])
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
   @@map("tournaments")
+  @@schema("esports")
+}
+
+model Match {
+  id           Int  @id @default(autoincrement())
+  tournamentId Int
+  teamAlphaId  Int
+  teamBetaId   Int
+  winnerId     Int?
+
+  phase TournamentPhase @default(GROUPS)
+
+  teamAlpha  Team       @relation("TeamAlpha", fields: [teamAlphaId], references: [id])
+  teamBeta   Team       @relation("TeamBeta", fields: [teamBetaId], references: [id])
+  winner     Team?      @relation("Winner", fields: [winnerId], references: [id])
+  tournament Tournament @relation(fields: [tournamentId], references: [id])
+
+  scheduledAt DateTime
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  team        Team?    @relation(fields: [teamId], references: [id])
+  teamId      Int?
+
+  @@map("matches")
   @@schema("esports")
 }
