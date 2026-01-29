@@ -9,13 +9,12 @@ enum MatchStatus {
 }
 
 model Match {
-  id Int @id @default(autoincrement())
+  id     Int @id @default(autoincrement())
+  number Int
+  bestOf Int
 
   status MatchStatus     @default(SCHEDULED)
   phase  TournamentPhase
-
-  matchNumber Int
-  bestOf      Int
 
   participants Participant[]
 
