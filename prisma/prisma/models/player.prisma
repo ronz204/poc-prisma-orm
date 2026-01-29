@@ -18,7 +18,8 @@ model Player {
   totalWins   Int @default(0)
   totalLosses Int @default(0)
 
-  members Member[]
+  members      Member[]
+  participants Participant[]
 
   countryId Int
   country   Country @relation(fields: [countryId], references: [id])

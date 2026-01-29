@@ -17,6 +17,8 @@ model Match {
   matchNumber Int
   bestOf      Int
 
+  participants Participant[]
+
   tournamentId Int
   tournament   Tournament @relation(fields: [tournamentId], references: [id])
 

@@ -6,6 +6,7 @@ model Team {
   isActive Boolean @default(true)
 
   members       Member[]
+  participants  Participant[]
   registrations Registration[]
 
   teamAlphaMatches  Match[] @relation("TeamAlphaMatches")
