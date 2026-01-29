@@ -9,6 +9,9 @@ model Team {
   participants  Participant[]
   registrations Registration[]
 
+  fromTransfers Transfer[] @relation("FromTeamTransfers")
+  toTransfers   Transfer[] @relation("ToTeamTransfers")
+
   teamAlphaMatches  Match[] @relation("TeamAlphaMatches")
   teamBetaMatches   Match[] @relation("TeamBetaMatches")
   teamWinnerMatches Match[] @relation("TeamWinnerMatches")

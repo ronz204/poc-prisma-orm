@@ -1,0 +1,21 @@
+model Transfer {
+  id Int @id @default(autoincrement())
+
+  transferDate DateTime
+  transferFee  Decimal  @db.Decimal(12, 2)
+
+  playerId Int
+  player   Player @relation(fields: [playerId], references: [id])
+
+  toTeamId Int
+  toTeam   Team @relation("ToTeamTransfers", fields: [toTeamId], references: [id])
+
+  fromTeamId Int
+  fromTeam   Team @relation("FromTeamTransfers", fields: [fromTeamId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("transfers")
+  @@schema("esports")
+}

@@ -19,6 +19,7 @@ model Player {
   totalLosses Int @default(0)
 
   members      Member[]
+  transfers    Transfer[]
   participants Participant[]
 
   countryId Int
