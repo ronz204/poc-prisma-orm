@@ -1,0 +1,44 @@
+enum MatchStatus {
+  SCHEDULED
+  ONGOING
+  COMPLETED
+  CANCELED
+
+  @@map("match_status")
+  @@schema("esports")
+}
+
+model Match {
+  id Int @id @default(autoincrement())
+
+  status MatchStatus     @default(SCHEDULED)
+  phase  TournamentPhase
+
+  matchNumber Int
+  bestOf      Int
+
+  tournamentId Int
+  tournament   Tournament @relation(fields: [tournamentId], references: [id])
+
+  teamAlphaId Int
+  teamAlpha   Team @relation("TeamAlphaMatches", fields: [teamAlphaId], references: [id])
+
+  teamBetaId Int
+  teamBeta   Team @relation("TeamBetaMatches", fields: [teamBetaId], references: [id])
+
+  teamWinnerId Int?
+  teamWinner   Team? @relation("TeamWinnerMatches", fields: [teamWinnerId], references: [id])
+
+  scoreAlpha Int @default(0)
+  scoreBeta  Int @default(0)
+
+  startedAt   DateTime?
+  finishedAt  DateTime?
+  scheduledAt DateTime?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("matches")
+  @@schema("esports")
+}

@@ -8,6 +8,10 @@ model Team {
   members       Member[]
   registrations Registration[]
 
+  teamAlphaMatches  Match[] @relation("TeamAlphaMatches")
+  teamBetaMatches   Match[] @relation("TeamBetaMatches")
+  teamWinnerMatches Match[] @relation("TeamWinnerMatches")
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
