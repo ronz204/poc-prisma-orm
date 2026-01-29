@@ -26,12 +26,14 @@ model Tournament {
   prizePool Decimal @default(0) @db.Decimal(12, 2)
   currency  String  @default("USD")
 
-  status   TournamentStatus @default(REGISTRATION_OPEN)
-  format   TournamentFormat @default(SINGLE_ELIMINATION)
+  status TournamentStatus @default(REGISTRATION_OPEN)
+  format TournamentFormat @default(SINGLE_ELIMINATION)
 
   maxTeams    Int
   minTeamSize Int
   maxTeamSize Int
+
+  registrations Registration[]
 
   gameId Int
   game   Game @relation(fields: [gameId], references: [id])
