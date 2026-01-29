@@ -1,4 +1,5 @@
-import { Prisma } from "@Database/connector";
+import { Prisma } from "@Database/context";
+
 
 
 
