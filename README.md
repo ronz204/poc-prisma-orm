@@ -1,1 +1,1 @@
-### Proof of Concepts | Prisma ORM with Pg
+### Proof of Concepts | Prisma
