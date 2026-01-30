@@ -1,5 +1,5 @@
-import { Prisma } from "@Database/context";
-import type { Country } from "@Types/country";
+import { Prisma } from "@Database/Connector";
+import type { Country } from "@Types/Country";
 
 const data: Country.Create[] = [
   { name: "United States", code: "US" },
