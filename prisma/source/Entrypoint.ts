@@ -1,9 +1,6 @@
 import { Prisma } from "@Database/Connector";
-import type { Country } from "@Database/Types/Country";
+import { RetrieveCountriesSpec } from "@Handlers/Country/Retrieve/RetrieveCountriesSpec";
 
-const data: Country.Create[] = [
-  { name: "United States", code: "US" },
-];
+const spec = new RetrieveCountriesSpec({ limit: 10, offset: 0 });
+const records = await Prisma.country.findMany(spec.toQuery());
 
-const created = await Prisma.country.createMany({ data });
-console.log(created.count);
