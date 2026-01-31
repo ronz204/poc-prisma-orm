@@ -4,6 +4,7 @@ import type { RetrieveCountriesResponse as Response } from "./RetrieveResponse";
 
 import { PrismaClient } from "@Prisma/client";
 import { RetrieveCountriesSpec } from "./RetrieveSpec";
+import { RetrieveCountriesMapper } from "./RetrieveMapper";
 import { RetrieveCountriesSchema } from "./RetrieveSchema";
 
 export class RetrieveCountriesHandler implements Handler<Query, Response> {
@@ -15,10 +16,6 @@ export class RetrieveCountriesHandler implements Handler<Query, Response> {
     const query = new RetrieveCountriesSpec(validated).toQuery();
     const records = await this.prisma.country.findMany(query);
 
-    return records.map(record => ({
-      id: record.id,
-      name: record.name,
-      code: record.code,
-    }));
+    return RetrieveCountriesMapper.toResponse(records);
   };
 };
