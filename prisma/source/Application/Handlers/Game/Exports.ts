@@ -1,0 +1,1 @@
+export { RetrieveGamesHandler } from "./Retrieve/RetrieveHandler";
