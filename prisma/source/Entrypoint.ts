@@ -1,6 +1,6 @@
 import { Prisma } from "@Database/Connector";
-import { RetrieveCountriesSpec } from "@Handlers/Country/Retrieve/RetrieveCountriesSpec";
+import { RetrieveCountriesHandler } from "@Handlers/Country/Exports";
 
-const spec = new RetrieveCountriesSpec({ limit: 10, offset: 0 });
-const records = await Prisma.country.findMany(spec.toQuery());
-
+const handler = new RetrieveCountriesHandler(Prisma);
+const records = await handler.handle({});
+console.log(records[0]?.code);
