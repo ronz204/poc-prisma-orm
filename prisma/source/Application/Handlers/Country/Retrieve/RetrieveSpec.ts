@@ -10,6 +10,7 @@ export class RetrieveCountriesSpec extends Specification {
       take: this.query.limit,
       skip: this.query.offset,
       include: { players: true },
+      where: { code: this.query.code },
     } as const satisfies CountryFindManyArgs;
   };
 };
