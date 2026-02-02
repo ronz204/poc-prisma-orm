@@ -13,6 +13,9 @@ model Moder {
   email String    @unique
   role  ModerRole @default(VIEWER)
 
+  tournamentId Int
+  tournament   Tournament @relation(fields: [tournamentId], references: [id])
+
   assignedAt DateTime @default(now())
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt

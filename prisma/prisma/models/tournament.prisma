@@ -46,6 +46,7 @@ model Tournament {
   minTeamSize Int
   maxTeamSize Int
 
+  moders        Moder[]
   matches       Match[]
   registrations Registration[]
 
