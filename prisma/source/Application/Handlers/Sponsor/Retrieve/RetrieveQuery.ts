@@ -1,3 +1,3 @@
 import * as z from "zod";
-import { RetrieveSponsorSchema } from "./RetrieveSchema";
-export type RetrieveSponsorQuery = z.infer<typeof RetrieveSponsorSchema>;
+import { RetrieveSponsorsSchema } from "./RetrieveSchema";
+export type RetrieveSponsorsQuery = z.infer<typeof RetrieveSponsorsSchema>;
