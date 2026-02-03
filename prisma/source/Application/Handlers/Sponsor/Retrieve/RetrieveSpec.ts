@@ -1,6 +1,6 @@
 import type { SponsorFindManyArgs } from "@Prisma/models";
 import type { RetrieveSponsorsQuery } from "./RetrieveQuery";
-import { Specification } from "@Database/Specs/Specification";
+import { Specification } from "@Database/Specification";
 
 export class RetrieveSponsorsSpec extends Specification {
   constructor(private query: RetrieveSponsorsQuery) {super()};
