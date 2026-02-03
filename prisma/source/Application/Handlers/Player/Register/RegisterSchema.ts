@@ -1,0 +1,7 @@
+import * as z from "zod";
+
+export const RegisterPlayerSchema = z.object({
+  name: z.string().min(1).max(100),
+  email: z.email().min(10).max(255),
+  country: z.number().int().positive(),
+});
