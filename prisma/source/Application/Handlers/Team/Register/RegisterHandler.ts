@@ -19,24 +19,18 @@ export class RegisterTeamHandler implements Handler<Command, Response> {
     const validated = RegisterTeamSchema.parse(input);
 
     const teamExists = new CheckTeamExistsSpec({ 
-      tag: validated.tag, 
-      name: validated.name 
+      tag: validated.tag,  name: validated.name
     });
 
     const teamCount = await this.prisma.team.count(teamExists.toQuery());
     if (teamCount > 0) throw new Error("Team already exists with this tag or name");
 
-
+    
     const captains = validated.members.filter(m => m.role === MemberRole.CAPTAIN);
     const coaches = validated.members.filter(m => m.role === MemberRole.COACH);
 
-    if (captains.length !== 1) {
-      throw new Error("Team must have exactly 1 CAPTAIN");
-    }
-
-    if (coaches.length > 1) {
-      throw new Error("Team can have at most 1 COACH");
-    }
+    if (captains.length !== 1) throw new Error("Team must have exactly 1 CAPTAIN");
+    if (coaches.length > 1) throw new Error("Team can have at most 1 COACH");
 
 
     for (const member of validated.members) {
