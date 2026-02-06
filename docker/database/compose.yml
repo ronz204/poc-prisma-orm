@@ -1,0 +1,15 @@
+services:
+  postgres:
+    image: postgres:15-alpine
+    container_name: postgres
+    restart: unless-stopped
+    ports:
+      - "5432:5432"
+    networks:
+      - prisma-network
+    environment:
+      - POSTGRES_DB=${POSTGRES_DB:-orm}
+      - POSTGRES_USER=${POSTGRES_USER:-prisma}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-p4ssw0rd}
+    volumes:
+      - prisma-data:/var/lib/postgresql/data
