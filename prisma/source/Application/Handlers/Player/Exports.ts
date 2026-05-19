@@ -1,1 +1,0 @@
-export { RegisterPlayerHandler } from "./Register/RegisterHandler";

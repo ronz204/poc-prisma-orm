@@ -1,1 +1,0 @@
-export { RegisterTeamHandler } from "./Register/RegisterHandler";
